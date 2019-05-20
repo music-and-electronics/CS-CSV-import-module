@@ -7,7 +7,8 @@ namespace CSV
 		public static void Main (string[] args)
 		{
 			Console.WriteLine ("Hello World!");
-            Console.WriteLine("It is changed!")
+			Console.WriteLine ("It is changed!");
+			Console.WriteLine ("You droped ; ");
 		}
 	}
 }
