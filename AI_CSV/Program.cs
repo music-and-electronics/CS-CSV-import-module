@@ -6,6 +6,7 @@ namespace AI_CSV
     {
         static void Main(string[] args)
         {
+            Console.Write("Hello!");
             Console.WriteLine("Hello World!");
         }
     }
