@@ -9,6 +9,9 @@ namespace CSV
 		public List<int[]> file_parse = new List<int[]> ();
 		public Parse(StreamReader sr)
 		{
+
+			bool result;
+			int decision;
 			while(!sr.EndOfStream)
 			{
 				string line = sr.ReadLine ();
@@ -16,7 +19,8 @@ namespace CSV
 				int[] data_to_integer = new int[data.Length];
 				for(int i=0;i<data.Length;i++)
 				{
-					if (data [i].Length > 3)
+					result = int.TryParse (data [i], out decision);
+					if (result == false)
 						break;
 					else
 						data_to_integer [i] = Int32.Parse (data [i]);
@@ -35,15 +39,13 @@ namespace CSV
 			
 		}
 	}
+
 	class MainClass
 	{
 		public static void Main (string[] args)
 		{
 			StreamReader sr= new StreamReader("/home/dextop/DataSet.csv");
 			Parse parse = new Parse (sr);
-
-
-
 
 		}
 	}
