@@ -8,24 +8,34 @@ namespace CSV
 		public static void Main (string[] args)
 		{
 			StreamReader sr= new StreamReader("/home/dextop/DataSet.csv");
-			List<string[]> file_parse = new List<string[]> ();
+			List<int[]> file_parse = new List<int[]> ();
 			while(!sr.EndOfStream)
 			{
 				string line = sr.ReadLine ();
 				string[] data= line.Split(',');
-				file_parse.Add (data);
+				int[] data_to_integer = new int[data.Length];
+				for(int i=0;i<data.Length;i++)
+				{
+					if (data [i].Length > 3)
+						break;
+					else
+					data_to_integer [i] = Int32.Parse (data [i]);
+				}
+				file_parse.Add (data_to_integer);
+	
 			}
-
-			foreach(string[] a in file_parse)
+			foreach(int [] a in file_parse)
 			{
 				for(int i=0;i<a.Length;i++)
 				{
-					Console.Write (a [i]);
+					Console.Write ($"{a [i]} ");
 				}
 				Console.WriteLine ();
 			}
 
-			
+
+
+
 		}
 	}
 }
