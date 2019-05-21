@@ -3,12 +3,12 @@ using System.IO;
 using System.Collections.Generic;
 namespace CSV
 {
-	class MainClass
+	class Parse
 	{
-		public static void Main (string[] args)
+		private StreamReader sr;
+		public List<int[]> file_parse = new List<int[]> ();
+		public Parse(StreamReader sr)
 		{
-			StreamReader sr= new StreamReader("/home/dextop/DataSet.csv");
-			List<int[]> file_parse = new List<int[]> ();
 			while(!sr.EndOfStream)
 			{
 				string line = sr.ReadLine ();
@@ -19,11 +19,11 @@ namespace CSV
 					if (data [i].Length > 3)
 						break;
 					else
-					data_to_integer [i] = Int32.Parse (data [i]);
+						data_to_integer [i] = Int32.Parse (data [i]);
 				}
 				file_parse.Add (data_to_integer);
-	
 			}
+
 			foreach(int [] a in file_parse)
 			{
 				for(int i=0;i<a.Length;i++)
@@ -32,6 +32,15 @@ namespace CSV
 				}
 				Console.WriteLine ();
 			}
+			
+		}
+	}
+	class MainClass
+	{
+		public static void Main (string[] args)
+		{
+			StreamReader sr= new StreamReader("/home/dextop/DataSet.csv");
+			Parse parse = new Parse (sr);
 
 
 
