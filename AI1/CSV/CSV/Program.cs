@@ -3,40 +3,31 @@ using System.IO;
 using System.Collections.Generic;
 namespace CSV
 {
+	class ANN
+	{
+		private  double w1=0.5;
+		private double w2=0.5;
+		public double learning_rate;
+
+		public void Weight(object []a)
+		{
+
+		}
+	}
+	
 	class Parse
 	{
-		private StreamReader sr;
-		public List<int[]> file_parse = new List<int[]> ();
+		public List<object[]> file_parse = new List<object[]> ();
+
 		public Parse(StreamReader sr)
 		{
 
-			bool result;
-			int decision;
 			while(!sr.EndOfStream)
 			{
 				string line = sr.ReadLine ();
-				string[] data= line.Split(',');
-				int[] data_to_integer = new int[data.Length];
-				for(int i=0;i<data.Length;i++)
-				{
-					result = int.TryParse (data [i], out decision);
-					if (result == false)
-						break;
-					else
-						data_to_integer [i] = Int32.Parse (data [i]);
-				}
-				file_parse.Add (data_to_integer);
+				object[] data= line.Split(',');
+				file_parse.Add (data);
 			}
-
-			foreach(int [] a in file_parse)
-			{
-				for(int i=0;i<a.Length;i++)
-				{
-					Console.Write ($"{a [i]} ");
-				}
-				Console.WriteLine ();
-			}
-			
 		}
 	}
 
@@ -46,6 +37,8 @@ namespace CSV
 		{
 			StreamReader sr= new StreamReader("/home/dextop/DataSet.csv");
 			Parse parse = new Parse (sr);
+			ANN ann = new ANN ();
+			ann.Weight (parse.file_parse);
 
 		}
 	}
